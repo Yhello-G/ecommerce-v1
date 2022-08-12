@@ -10,6 +10,7 @@ import java.util.List;
 import com.manuel.ecommerce.beans.CartBean;
 import com.manuel.ecommerce.beans.DemandBean;
 import com.manuel.ecommerce.beans.ProductBean;
+import com.manuel.ecommerce.util.DBUtil;
 
 public class CartDaoImpl implements CartDao{
 
@@ -25,7 +26,7 @@ public class CartDaoImpl implements CartDao{
 		
 		try {
 			
-			ps = con.prepareStatement("select * from usercart where username=? and prodid=?");
+			ps = con.prepareStatement("select * from usercart where userid=? and prodid=?");
 			
 			ps.setString(1, userId);
 			ps.setString(2, prodId);
@@ -91,7 +92,7 @@ public class CartDaoImpl implements CartDao{
 		
 		try {
 			
-			ps = con.prepareStatement("select * from usercart where username=?");
+			ps = con.prepareStatement("select * from usercart where userid=?");
 			
 			ps.setString(1, userId);
 			
@@ -100,7 +101,7 @@ public class CartDaoImpl implements CartDao{
 			while(rs.next()) {
 				CartBean cart = new CartBean();
 				
-				cart.setUserId(rs.getString("username"));
+				cart.setUserId(rs.getString("userid"));
 				cart.setProdId(rs.getString("prodid"));
 				cart.setQuantity(Integer.parseInt(rs.getString("quantity")));
 				
@@ -134,7 +135,7 @@ public class CartDaoImpl implements CartDao{
 		ResultSet rs = null;
 		
 		try {
-			ps = con.prepareStatement("select sum(quantity) from usercart where username=?");
+			ps = con.prepareStatement("select sum(quantity) from usercart where userid=?");
 			
 			ps.setString(1, userId);
 			
@@ -167,7 +168,7 @@ public class CartDaoImpl implements CartDao{
 		
 		try {
 			
-			ps = con.prepareStatement("select * from usercart where username=? and prodid=?");
+			ps = con.prepareStatement("select * from usercart where userid=? and prodid=?");
 			
 			ps.setString(1, userId);
 			ps.setString(2, prodId);
@@ -181,7 +182,7 @@ public class CartDaoImpl implements CartDao{
 				prodQuantity -= 1;
 				
 				if(prodQuantity>0) {
-					ps2 = con.prepareStatement("update usercart set quantity=? where username=? and prodid=?");
+					ps2 = con.prepareStatement("update usercart set quantity=? where userid=? and prodid=?");
 					
 					ps2.setInt(1, prodQuantity);
 					
@@ -196,7 +197,7 @@ public class CartDaoImpl implements CartDao{
 				}
 				else if(prodQuantity <=0) {
 					
-					ps2 = con.prepareStatement("delete from usercart where username=? and prodid=?");
+					ps2 = con.prepareStatement("delete from usercart where userid=? and prodid=?");
 					
 					ps2.setString(1, userId);
 					
@@ -241,7 +242,7 @@ public class CartDaoImpl implements CartDao{
 		
 		try {
 			
-			ps = con.prepareStatement("delete from usercart where username=? and prodid=?");
+			ps = con.prepareStatement("delete from usercart where userid=? and prodid=?");
 			ps.setString(1, userId);
 			ps.setString(2, prodId);
 			
@@ -280,7 +281,7 @@ public class CartDaoImpl implements CartDao{
 		
 		try {
 			
-			ps = con.prepareStatement("select * from usercart where username=? and prodid=?");
+			ps = con.prepareStatement("select * from usercart where userid=? and prodid=?");
 			
 			ps.setString(1, userId);
 			ps.setString(2, prodId);
@@ -291,7 +292,7 @@ public class CartDaoImpl implements CartDao{
 				
 				
 				if(prodQty >0) {
-					ps2 = con.prepareStatement("update usercart set quantity=? where username=? and prodid=?");
+					ps2 = con.prepareStatement("update usercart set quantity=? where userid=? and prodid=?");
 				
 					ps2.setInt(1, prodQty);
 				
@@ -305,7 +306,7 @@ public class CartDaoImpl implements CartDao{
 						status  = "Product Successfully Updated to Cart!";
 				}
 				else if(prodQty == 0) {
-					ps2 = con.prepareStatement("delete from usercart where username=? and prodid=?");
+					ps2 = con.prepareStatement("delete from usercart where userid=? and prodid=?");
 				
 					ps2.setString(1, userId);
 				
@@ -357,7 +358,7 @@ public class CartDaoImpl implements CartDao{
 		ResultSet rs = null;
 		
 		try {
-			ps = con.prepareStatement("select sum(quantity) from usercart where username=? and prodid=?");
+			ps = con.prepareStatement("select sum(quantity) from usercart where userid=? and prodid=?");
 			ps.setString(1, userId);
 			ps.setString(2, prodId);
 			rs = ps.executeQuery();

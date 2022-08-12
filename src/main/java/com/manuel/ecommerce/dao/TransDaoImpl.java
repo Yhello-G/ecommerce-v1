@@ -1,5 +1,7 @@
 package com.manuel.ecommerce.dao;
 
+import com.manuel.ecommerce.util.DBUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

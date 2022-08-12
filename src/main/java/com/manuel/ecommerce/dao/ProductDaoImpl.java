@@ -10,8 +10,11 @@ import java.util.List;
 
 import com.manuel.ecommerce.beans.ProductBean;
 import com.manuel.ecommerce.beans.DemandBean;
+import com.manuel.ecommerce.util.DBUtil;
 import com.manuel.ecommerce.util.IDUtil;
 import com.manuel.ecommerce.util.MailMessage;
+
+import static java.lang.System.out;
 
 public class ProductDaoImpl implements ProductDao{
 
@@ -51,7 +54,8 @@ public class ProductDaoImpl implements ProductDao{
 			
 			if(k>0) {
 			
-				status = "Product Added Successfully with Product Id: "+product.getProdId(); 
+				status = "Product Added Successfully with Product Id: "+product.getProdId();
+				out.println(status);
 
 			}
 			else {
@@ -186,7 +190,7 @@ public class ProductDaoImpl implements ProductDao{
 		List<ProductBean> products = new ArrayList<ProductBean>();
 
 		Connection con = DBUtil.provideConnection();
-		System.out.println("Connected!");
+		out.print("Connected!");
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
@@ -232,7 +236,7 @@ public class ProductDaoImpl implements ProductDao{
 		
 		try {
 			ps = con.prepareStatement("select image from product where  pid=?");
-			
+			String pidVal = prodId;
 			ps.setString(1, prodId);
 			
 			rs = ps.executeQuery();

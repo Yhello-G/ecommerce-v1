@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.manuel.ecommerce.beans.CartBean;
+import com.manuel.ecommerce.util.DBUtil;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

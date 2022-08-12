@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.manuel.ecommerce.beans.UserBean;
 import com.manuel.ecommerce.constants.IUserConstants;
+import com.manuel.ecommerce.util.DBUtil;
 import com.manuel.ecommerce.util.MailMessage;
 
 public class UserDaoImpl implements UserDao {
@@ -56,7 +57,7 @@ public class UserDaoImpl implements UserDao {
 			
 			if(k>0) {
 				status = "User Registered Successfully!";
-				MailMessage.registrationSuccess(user.getEmailId(), user.getUserName().split(" ")[0]);
+				//MailMessage.registrationSuccess(user.getEmailId(), user.getUserName().split(" ")[0]);
 			}
 			
 		} catch (SQLException e) {
@@ -179,7 +180,8 @@ public class UserDaoImpl implements UserDao {
 		String fname = "";
 		
 		Connection con = DBUtil.provideConnection();
-		
+
+
 		PreparedStatement ps=null;
 		ResultSet rs = null;
 		

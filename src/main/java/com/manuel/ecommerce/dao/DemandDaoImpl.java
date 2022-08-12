@@ -1,6 +1,7 @@
 package com.manuel.ecommerce.dao;
 
 import com.manuel.ecommerce.beans.DemandBean;
+import com.manuel.ecommerce.util.DBUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

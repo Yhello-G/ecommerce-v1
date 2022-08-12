@@ -57,15 +57,15 @@
 				
 			%>
 			
-			<li> <a href="cartDetails.jsp" style="margin:0px;padding:0px;" id="mycart"><i class="fa fa-shopping-cart fa-3x icon-white" style="background-color:#333;margin:0px;padding:0px; margin-top:5px;" > 
- </i>Cart</a></li>
+			<li> <a href="cartDetails.jsp" style="margin:0px;padding:0px;" id="mycart"><i class="fa fa-shopping-cart fa-3x icon-white" style="background-color:#333;margin:0px;padding:0px; margin-top:5px;" >
+            </i>Cart</a></li>
 			
 			<%
 				}
-				else{
+				else {
 			%>
-         <li> <a href="cartDetails.jsp" style="margin:0px;padding:0px;" id="mycart"><i data-count="<%=notf %>" class="fa fa-shopping-cart fa-3x icon-white badge" style="background-color:#333;margin:0px;padding:0px; margin-top:5px;" > 
- </i>Cart</a></li>
+                <li> <a href="cartDetails.jsp" style="margin:0px;padding:0px;" id="mycart"><i data-count="<%=notf %>" class="fa fa-shopping-cart fa-3x icon-white badge" style="background-color:#333;margin:0px;padding:0px; margin-top:5px;" >
+                </i>Cart</a></li>
  				<% 
  					} 
  				%>

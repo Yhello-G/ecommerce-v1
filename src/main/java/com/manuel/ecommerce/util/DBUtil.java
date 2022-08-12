@@ -1,4 +1,4 @@
-package com.manuel.ecommerce.dao;
+package com.manuel.ecommerce.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -46,15 +46,14 @@ public class DBUtil {
 
 	public static Connection provideConnection(){
 		Connection connection = null;
-
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopping", "root", "12345");
-		} catch ( SQLException sqlException){
-			System.out.println("Something ");
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException(e);
+			if (connection == null || connection.isClosed()){
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopping", "root", "12345");
+			}
+		} catch (SQLException sqle){
+		} catch (ClassNotFoundException cnf){
+			System.out.println("Class Not Found Exception thrown");
 		}
 
 		return  connection;

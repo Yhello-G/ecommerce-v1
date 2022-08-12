@@ -45,6 +45,7 @@
   	List<ProductBean> products = new ArrayList<ProductBean>();
   	
   	products = prodDao.getAllProducts();
+     // System.out.println(products.get(0).getProdName());
   	
   	for(ProductBean product : products){
   	
@@ -56,7 +57,7 @@
       <img src="./ShowImage?pid=<%=product.getProdId() %>" alt="Product" style="height:200px; max-width:200px">
       <p class="productname"><%=product.getProdName() %> ( <%=product.getProdId() %> ) </p>
       <p class="productinfo"><%=product.getProdInfo() %></p>
-      <p class="price">Rs <%=product.getProdPrice() %> </p>
+      <p class="price">$ <%=product.getProdPrice() %> </p>
       <form method="post">
       	<button type="submit" formaction="./AddtoCart?uid=<%=userName %>&pid=<%=product.getProdId() %>&pqty=1">Add to Cart</button>&nbsp;&nbsp;&nbsp;
       	<button type="submit" formaction="./AddtoCart?uid=<%=userName %>&pid=<%=product.getProdId() %>&pqty=1">Buy Now</button>
