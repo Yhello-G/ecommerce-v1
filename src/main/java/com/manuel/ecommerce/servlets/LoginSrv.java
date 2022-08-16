@@ -1,4 +1,4 @@
-package com.manuel.ecommerce.srv;
+package com.manuel.ecommerce.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,7 +26,7 @@ public class LoginSrv extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//userName = email of the customer
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
 		String userType = request.getParameter("usertype");

@@ -66,7 +66,7 @@
             <tr><td><br></td><td><br></td></tr>
             <tr><td>Exp Year: </td><td><input type="number" name="expyr"style="font-size: 15px; font-weight: normal;" placeholder="2026" maxlength="4" required></td></tr>
             <tr><td><br></td><td><input type="hidden" name="amount" value="<%=amount%>"/><br></td></tr>
-            <tr colspan="2" align="center"><td>&nbsp;</td><td><input type="submit" name="submit" value="Pay :Rs <%=amount%>" style="background-color:red;color:white;"></td></tr>
+            <tr colspan="2" align="center"><td>&nbsp;</td><td><input type="submit" name="submit" value="Pay :NGN <%=amount%>" style="background-color:red;color:white;"></td></tr>
 
           </table>
         

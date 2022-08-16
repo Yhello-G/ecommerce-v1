@@ -81,7 +81,7 @@ public class UserDaoImpl implements UserDao {
 		ResultSet rs = null;
 		
 		try {
-			ps = con.prepareStatement("select * from user where email=?");
+			ps = con.prepareStatement("select * from users where email=?");
 			
 			ps.setString(1, emailId);
 			
@@ -114,7 +114,7 @@ public class UserDaoImpl implements UserDao {
 		
 		try {
 			
-			ps = con.prepareStatement("select * from user where email=? and password=?");
+			ps = con.prepareStatement("select * from users where email=? and password=?");
 			
 			ps.setString(1, emailId);
 			ps.setString(2, password);
@@ -146,18 +146,18 @@ public class UserDaoImpl implements UserDao {
 		ResultSet rs = null;
 		
 		try {
-			ps = con.prepareStatement("select * from user where email=? and password=?");
+			ps = con.prepareStatement("select * from users where email=? and password=?");
 			ps.setString(1, emailId);
 			ps.setString(2, password);
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
 				user = new UserBean();
-				user.setUserName(rs.getString("name"));
-				user.setMobileNo(rs.getLong("mobile"));
+				user.setUserName(rs.getString("userName"));
+				user.setMobileNo(rs.getLong("mobileNo"));
 				user.setEmailId(rs.getString("email"));
 				user.setAddress(rs.getString("address"));
-				user.setPinCode(rs.getInt("pincode"));
+				user.setPinCode(rs.getInt("pinCode"));
 				user.setPassword(rs.getString("password"));
 				
 				return user;
@@ -186,7 +186,7 @@ public class UserDaoImpl implements UserDao {
 		ResultSet rs = null;
 		
 		try {
-			ps = con.prepareStatement("select name from user where email=?");
+			ps = con.prepareStatement("select name from users where email=?");
 			ps.setString(1, emailId);
 			
 			rs = ps.executeQuery();
@@ -216,7 +216,7 @@ public class UserDaoImpl implements UserDao {
 		ResultSet rs = null;
 		
 		try {
-			ps = con.prepareStatement("select address from user where email=?");
+			ps = con.prepareStatement("select address from users where email=?");
 			
 			ps.setString(1, userId);
 			

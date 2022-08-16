@@ -3,7 +3,13 @@ package com.manuel.ecommerce.beans;
 import java.io.Serializable;
 
 public class UserBean implements Serializable{
-	
+	private String userName;
+	private Long mobileNo;
+	private String emailId;
+	private String address;
+	private int pinCode;
+	private String password;
+
 	public UserBean(){}
 	
 	public UserBean(String userName, Long mobileNo, String emailId, String address, int pinCode, String password) {
@@ -16,13 +22,7 @@ public class UserBean implements Serializable{
 		this.password = password;
 	}
 
-	private String userName;
-	private Long mobileNo;
-	private String emailId;
-	private String address;
-	private int pinCode;
-	private String password;
-	
+
 	public String getUserName() {
 		return userName;
 	}

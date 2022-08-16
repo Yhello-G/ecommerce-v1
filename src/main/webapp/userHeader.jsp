@@ -3,7 +3,7 @@
 <%@ page import="com.manuel.ecommerce.dao.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
-<title>Ellison Electronics</title>
+<title>Online Market</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -15,13 +15,15 @@
 <body>
 
 	<%
-		 
+		 String sessionVal = (String) session.getAttribute("username");
+        System.out.println(sessionVal);
+
 		int notf = new CartDaoImpl().getCartCount((String)session.getAttribute("username"));
 	
 	%>
 <!--Company Header Starting  -->
 <div class="jumbotron text-center">
-  <h1>Ellison Electronics</h1>
+  <h1>Online Market</h1>
   <p>We specialize in Electronics</p>
   <form class="form-inline">
     <div class="input-group">
@@ -57,7 +59,7 @@
 				
 			%>
 			
-			<li> <a href="cartDetails.jsp" style="margin:0px;padding:0px;" id="mycart"><i class="fa fa-shopping-cart fa-3x icon-white" style="background-color:#333;margin:0px;padding:0px; margin-top:5px;" >
+			<li> <a href="cartDetails.jsp" style="margin:0px;padding:0px;" id="mycart-1"><i class="fa fa-shopping-cart fa-3x icon-white" style="background-color:#333;margin:0px;padding:0px; margin-top:5px;" >
             </i>Cart</a></li>
 			
 			<%

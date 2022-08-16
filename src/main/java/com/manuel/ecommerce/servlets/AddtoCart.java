@@ -1,4 +1,4 @@
-package com.manuel.ecommerce.srv;
+package com.manuel.ecommerce.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,25 +11,56 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.manuel.ecommerce.beans.ProductBean;
 import com.manuel.ecommerce.beans.DemandBean;
+import com.manuel.ecommerce.beans.ProductBean;
 import com.manuel.ecommerce.dao.CartDaoImpl;
 import com.manuel.ecommerce.dao.DemandDaoImpl;
 import com.manuel.ecommerce.dao.ProductDaoImpl;
 
 /**
- * Servlet implementation class UpdateToCart
+ * Servlet implementation class AddtoCart
  */
-@WebServlet("/UpdateToCart")
-public class UpdateToCart extends HttpServlet {
+@WebServlet("/AddtoCart")
+public class AddtoCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-    public UpdateToCart() {
+      
+    public AddtoCart() {
         super();
-        
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+/*
+		HttpSession session = request.getSession();
+		String userName = (String)session.getAttribute("username");
+		String password = (String)session.getAttribute("password");
+	
+		if(userName == null || password==null){
+	
+			response.sendRedirect("loginFirst.jsp");
+		}	
+		
+		//login Check Successfull
+		
+		
+		String userId = request.getParameter("uid");
+		String prodId = request.getParameter("pid");
+		int pQty = Integer.parseInt(request.getParameter("pqty"));
+		
+		CartDaoImpl cart = new CartDaoImpl();
+		
+		String status = cart.addProductToCart(userId, prodId, pQty);
+		
+		PrintWriter pw = response.getWriter();
+		
+		response.setContentType("text/html");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("userHome.jsp");
+		
+		rd.include(request, response);
+		
+		pw.print("<script>document.getElementById('message').innerHTML='"+status+"'</script>");
+		*/
+		
 		HttpSession session = request.getSession();
 		String userName = (String)session.getAttribute("username");
 		String password = (String)session.getAttribute("password");
@@ -44,10 +75,9 @@ public class UpdateToCart extends HttpServlet {
 		
 		String userId = userName;
 		String prodId = request.getParameter("pid");		
-		int pQty = Integer.parseInt(request.getParameter("pqty"));
+		int pQty = Integer.parseInt(request.getParameter("pqty")); //1
 		
 		CartDaoImpl cart = new CartDaoImpl();
-		
 		
 		ProductDaoImpl productDao = new  ProductDaoImpl();
 		
@@ -55,19 +85,28 @@ public class UpdateToCart extends HttpServlet {
 		
 		int availableQty = product.getProdQuantity();
 		
+		int cartQty = cart.getProductCount(userId,prodId);
+		
+		pQty += cartQty;
+		
 		PrintWriter pw = response.getWriter();
 		
 		response.setContentType("text/html");
 		
-		if(availableQty < pQty) {
+		if(availableQty < pQty ) {
 			
+			String status = null;
 			
-			String status = cart.updateProductToCart(userId, prodId, availableQty);
-			
-			status = "Only "+availableQty+" no of "+product.getProdName()+" are available in the shop! So we are adding only "+availableQty+" products into Your Cart"
-					+ "";
-			
-			
+			if(availableQty == 0) {
+				status = "Product is Out of Stock!";
+			}
+			else {
+				
+				cart.updateProductToCart(userId, prodId, availableQty);
+				
+				status = "Only "+availableQty+" no of "+product.getProdName()+" are available in the shop! So we are adding only "+availableQty+" products into Your Cart"
+						+ "";
+			}
 			DemandBean demandBean = new DemandBean(userName,product.getProdId(),pQty-availableQty);
 			
 			DemandDaoImpl demand = new DemandDaoImpl();
@@ -87,12 +126,13 @@ public class UpdateToCart extends HttpServlet {
 		else {
 			String status = cart.updateProductToCart(userId, prodId, pQty);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("cartDetails.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("userHome.jsp");
 			
 			rd.include(request, response);
 			
 			pw.println("<script>document.getElementById('message').innerHTML='"+status+"'</script>");
 		}
+		
 		
 	}
 

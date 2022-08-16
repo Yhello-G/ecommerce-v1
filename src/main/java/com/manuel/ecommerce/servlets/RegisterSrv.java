@@ -1,4 +1,4 @@
-package com.manuel.ecommerce.srv;
+package com.manuel.ecommerce.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.manuel.ecommerce.beans.UserBean;
-import com.manuel.ecommerce.dao.UserDao;
 import com.manuel.ecommerce.dao.UserDaoImpl;
 
 /**

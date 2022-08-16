@@ -105,7 +105,7 @@
 			}
   %>
   
-  	<tr style="background-color:grey;color:white;"><td colspan="6" style="text-align:center;">Total Amount to Pay (in Rupees)</td><td><%=totAmount %></td></tr>
+  	<tr style="background-color:grey;color:white;"><td colspan="6" style="text-align:center;">Total Amount to Pay (NGN)</td><td><%=totAmount %></td></tr>
     <% if(totAmount !=0) {%>
     <tr style="background-color:grey;color:white;"><td colspan="4" style="text-align:center;">
     	

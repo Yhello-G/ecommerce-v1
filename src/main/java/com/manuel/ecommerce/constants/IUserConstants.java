@@ -2,7 +2,7 @@ package com.manuel.ecommerce.constants;
 
 public interface IUserConstants {
 	
-	String TABLE_USER = "user";
+	String TABLE_USER = "users";
 	String COLUMN_NAME = "name";
 	String COLUMN_MOBILE = "mobile";
 	String COLUMN_EMAIL = "email";

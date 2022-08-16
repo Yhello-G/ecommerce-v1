@@ -1,4 +1,4 @@
-package com.manuel.ecommerce.srv;
+package com.manuel.ecommerce.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,58 +11,45 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.manuel.ecommerce.dao.ProductDaoImpl;
+import com.manuel.ecommerce.dao.OrderDaoImpl;
 
-@WebServlet("/RemoveProductSrv")
-public class RemoveProductSrv extends HttpServlet {
+/**
+ * Servlet implementation class OrderServlet
+ */
+@WebServlet("/OrderServlet")
+public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-    public RemoveProductSrv() {
+      
+    public OrderServlet() {
         super();
-        
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		String userType = (String)session.getAttribute("usertype");
 		String userName = (String)session.getAttribute("username");
 		String password = (String)session.getAttribute("password");
 	
-		if(userType== null || !userType.equals("admin")){
-			
-			response.sendRedirect("loginFirst.jsp");
-			
-		}
-		
-		else if(userName == null || password==null){
+		if(userName == null || password==null){
 	
 			response.sendRedirect("loginFirst.jsp");
 		}	
 		
-		//login checked
 		
-		
-		String prodId = request.getParameter("prodid");
-		/*System.out.println("Here: ");
-		System.out.println("Hi"+prodId+"Hi");*/
+		double paidAmount = Double.parseDouble(request.getParameter("amount"));
+		String status = new OrderDaoImpl().paymentSuccess(userName, paidAmount);
 		
 		PrintWriter pw = response.getWriter();
-		response.setContentType("removeProduct.jsp");
+		response.setContentType("text/html");
 		
-		ProductDaoImpl product = new ProductDaoImpl();
-		
-		String status = product.removeProduct(prodId);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("removeProduct.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("userHome.jsp");
 		
 		rd.include(request, response);
 		
 		pw.println("<script>document.getElementById('message').innerHTML='"+status+"'</script>");
-		
-		
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		doGet(request, response);

@@ -1,4 +1,4 @@
-package com.manuel.ecommerce.srv;
+package com.manuel.ecommerce.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

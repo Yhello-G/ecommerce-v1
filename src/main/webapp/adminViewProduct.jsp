@@ -53,7 +53,7 @@
       <img src="./ShowImage?pid=<%=product.getProdId() %>" alt="Product" style="height:200px; max-width:200px; max-width:300px;">
       <p class="productname"><%=product.getProdName() %> ( <%=product.getProdId() %> ) </p>
       <p class="productinfo"><%=product.getProdInfo() %></p>
-      <p class="price">Rs <%=product.getProdPrice() %> </p>
+      <p class="price">NGN <%=product.getProdPrice() %> </p>
       <form method="post">
       	<button type="submit" formaction="./RemoveProductSrv?prodid=<%=product.getProdId() %>">Remove Product</button>&nbsp;&nbsp;&nbsp;
       	<button type="submit" formaction="updateProduct.jsp?prodid=<%=product.getProdId() %>">Update Product</button>

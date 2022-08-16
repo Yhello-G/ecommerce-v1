@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Ellison Electronics</title>
+<title>Online Market</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -45,7 +45,6 @@
   	List<ProductBean> products = new ArrayList<ProductBean>();
   	
   	products = prodDao.getAllProducts();
-     // System.out.println(products.get(0).getProdName());
   	
   	for(ProductBean product : products){
   	
@@ -57,7 +56,7 @@
       <img src="./ShowImage?pid=<%=product.getProdId() %>" alt="Product" style="height:200px; max-width:200px">
       <p class="productname"><%=product.getProdName() %> ( <%=product.getProdId() %> ) </p>
       <p class="productinfo"><%=product.getProdInfo() %></p>
-      <p class="price">$ <%=product.getProdPrice() %> </p>
+      <p class="price">NGN <%=product.getProdPrice() %> </p>
       <form method="post">
       	<button type="submit" formaction="./AddtoCart?uid=<%=userName %>&pid=<%=product.getProdId() %>&pqty=1">Add to Cart</button>&nbsp;&nbsp;&nbsp;
       	<button type="submit" formaction="./AddtoCart?uid=<%=userName %>&pid=<%=product.getProdId() %>&pqty=1">Buy Now</button>

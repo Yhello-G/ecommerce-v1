@@ -135,18 +135,24 @@ public class CartDaoImpl implements CartDao{
 		ResultSet rs = null;
 		
 		try {
+			System.out.println("GET CART:" + userId);
 			ps = con.prepareStatement("select sum(quantity) from usercart where userid=?");
-			
+
 			ps.setString(1, userId);
-			
+
 			rs = ps.executeQuery();
-			
-			if(!rs.wasNull() && rs.next()) 
+			if (rs != null){
 				count = rs.getInt(1);
+			}
 			
+//			if(!rs.wasNull() && rs.next())
+//				count = rs.getInt(1);
+//
 		} catch (SQLException e) {
 	
 			e.printStackTrace();
+			System.out.println("Exception thrown while trying to GET CART COUNT");
+			e.getCause();
 		}
 		
 		DBUtil.closeConnection(con);
@@ -356,15 +362,18 @@ public class CartDaoImpl implements CartDao{
 		
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+
 		try {
 			ps = con.prepareStatement("select sum(quantity) from usercart where userid=? and prodid=?");
 			ps.setString(1, userId);
 			ps.setString(2, prodId);
 			rs = ps.executeQuery();
-			
-			if(!rs.wasNull() && rs.next())
+			if (rs != null){
 				count = rs.getInt(1);
+			}
+
+//			if(!rs.wasNull() && rs.next())
+//				count = rs.getInt(1);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
