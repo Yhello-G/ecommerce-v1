@@ -190,14 +190,14 @@ public class ProductDaoImpl implements ProductDao{
 		List<ProductBean> products = new ArrayList<ProductBean>();
 
 		Connection con = DBUtil.provideConnection();
-		out.print("Connected!");
+
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
 		try {
 			ps = con.prepareStatement("select * from product");
 			rs = ps.executeQuery();
-			while(rs.next()) {
+			while( rs != null && rs.next()) {
 				
 				ProductBean product = new ProductBean();
 				
@@ -304,14 +304,7 @@ public class ProductDaoImpl implements ProductDao{
 			
 			return status;
 		}
-		
-		/*System.out.println("pId: "+updatedProduct.getProdId());
-		System.out.println("pName: "+updatedProduct.getProdName());
-		System.out.println("pType: "+updatedProduct.getProdType());
-		System.out.println("pInfo: "+updatedProduct.getProdInfo());
-		System.out.println("pPrice: "+updatedProduct.getProdPrice());
-		System.out.println("pQuantity: "+updatedProduct.getProdQuantity());*/
-		
+
 		int prevQuantity = new ProductDaoImpl().getProductQuantity(prevProductId);
 		Connection con = DBUtil.provideConnection();
 		
@@ -328,7 +321,7 @@ public class ProductDaoImpl implements ProductDao{
 			ps.setString(6, prevProductId);
 			
 			int k = ps.executeUpdate();
-			//System.out.println("prevQuantity: "+prevQuantity);
+
 			if((k>0) && (prevQuantity < updatedProduct.getProdQuantity())) {
 				status = "Product Updated Successfully!";
 				//System.out.println("updated!");

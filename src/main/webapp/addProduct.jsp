@@ -24,10 +24,10 @@
 		else if(userName == null || password==null){
 	
 			response.sendRedirect("loginFirst.jsp");
-		}	
-		
+		}
 	%>
-	
+
+
 	<%@ include file="adminHeader.html" %>
 	
 	<div class="products" style="background-color: #E6F9E6;">
@@ -69,7 +69,7 @@
             <tr><td><br></td><td><br></td></tr>
             <tr><td>Picture</td><td><input type="file" name="image"></td></tr>
                         <tr><td><br></td><td><br></td></tr>
-            <tr colspan="2" align="center"><td><button><a href="adminHome.jsp">Cancle</a></button>&nbsp;</td><td><input type="submit" name="submit" value="Add Item"></td></tr>
+            <tr colspan="2" align="center"><td><button><a href="adminHome.jsp">Cancel</a></button>&nbsp;</td><td><input type="submit" name="submit" value="Add Item"></td></tr>
 
           </table>
         

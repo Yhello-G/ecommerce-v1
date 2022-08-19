@@ -50,15 +50,15 @@ else{
 			List<ProductBean> products = new ArrayList<ProductBean>();
 
 				products = prodDao.getAllProducts();
-
+				int pqty = 1;
 			for(ProductBean product : products){
 
 				String addToCartUrl = null;
 				String buyNowUrl = null;
 
 				if(isValidUser){
-					addToCartUrl = "./AddtoCart?uid="+userName+"&pid="+product.getProdId()+"";
-					buyNowUrl = "./BuyNow?uid="+userName+"&pid="+product.getProdId()+"";
+					addToCartUrl = "./AddtoCart?uid="+userName+"&pid="+product.getProdId()+"&pqty="+pqty+"";
+					buyNowUrl = "./BuyNow?uid="+userName+"&pid="+product.getProdId()+"&pqty="+pqty+"";
 				}
 				else{
 					addToCartUrl = "login.html";

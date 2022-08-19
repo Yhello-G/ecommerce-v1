@@ -141,7 +141,7 @@ public class CartDaoImpl implements CartDao{
 			ps.setString(1, userId);
 
 			rs = ps.executeQuery();
-			if (rs != null){
+			if (rs != null && rs.next()){
 				count = rs.getInt(1);
 			}
 			
@@ -327,12 +327,13 @@ public class CartDaoImpl implements CartDao{
 			else {
 				
 				ps2 = con.prepareStatement("insert into usercart values(?,?,?)");
+				ps2.setInt(1, prodQty);
 				
-				ps2.setString(1, userId);
+				ps2.setString(2, userId);
 				
-				ps2.setString(2, prodId);
+				ps2.setString(3, prodId);
 				
-				ps2.setInt(3, prodQty);
+
 				
 				int k = ps2.executeUpdate();
 				
@@ -368,7 +369,7 @@ public class CartDaoImpl implements CartDao{
 			ps.setString(1, userId);
 			ps.setString(2, prodId);
 			rs = ps.executeQuery();
-			if (rs != null){
+			if (rs != null && rs.next()){
 				count = rs.getInt(1);
 			}
 
